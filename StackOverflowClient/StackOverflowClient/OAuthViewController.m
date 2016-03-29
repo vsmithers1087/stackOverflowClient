@@ -83,17 +83,15 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
     NSArray *urlComponents = [[url description]componentsSeparatedByCharactersInSet:seperatingCharacters];
     
     for (NSString * component in urlComponents) {
+        
         NSArray *componentArray = [component componentsSeparatedByString:@"="];
         
         if (componentArray.count >= 2) {
-            
-            NSString *key = componentArray[0];
+
             NSString *value = componentArray[1];
             
-            if (key && value) {
-                NSLog(@"KEY: %@, VALUE: %@", key, value);
-                
-//                [self saveStringToUserDefaults:value forKey:key];
+            if (value) {
+                NSLog(@"VALUE: %@", value);
                 
                 [self saveTokenToKeyChain:value];
                 
@@ -122,11 +120,11 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
 }
 
 -(NSString*)accessTokenFromKeyChain{
-    NSMutableDictionary *tempDict = [self getKeyChainQuery:kAccessToken];
+    NSMutableDictionary *tempDict = [self getKeyChainQuery:(NSString*)kAccessToken];
     
     NSString *token;
     
-    id tempObject = [tempDict objectForKey:(NSString*)kSecReturnData];
+    NSString *tempObject = [tempDict objectForKey:(NSString*)kSecReturnData];
     tempObject = kCFBooleanTrue;
     id tempObjectX = [tempDict objectForKey:(NSString*)kSecMatchLimitOne];
     tempObjectX = kSecMatchLimit;

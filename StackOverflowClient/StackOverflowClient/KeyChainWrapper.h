@@ -13,8 +13,5 @@
 
 @property(strong, nonatomic)NSMutableDictionary *keyChainStore;
 
--(void)setObjectFoKey:(NSString*)object forKey:(NSString*)key;
-
--(NSString*)returnObjectForKey:(NSString*)key;
 
 @end
