@@ -77,9 +77,11 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 
+
 -(void)getAndStoreAccessTokenFromURL:(NSURL*)url{
     
     NSCharacterSet *seperatingCharacters = [NSCharacterSet characterSetWithCharactersInString:@"#&?"];
+    
     NSArray *urlComponents = [[url description]componentsSeparatedByCharactersInSet:seperatingCharacters];
     
     for (NSString * component in urlComponents) {
@@ -119,19 +121,20 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
     return YES;
 }
 
--(NSString*)accessTokenFromKeyChain{
+-(id)accessTokenFromKeyChain{
+    
     NSMutableDictionary *tempDict = [self getKeyChainQuery:(NSString*)kAccessToken];
     
-    NSString *token;
+    id token = nil;
     
-    NSString *tempObject = [tempDict objectForKey:(NSString*)kSecReturnData];
-    tempObject = kCFBooleanTrue;
-    id tempObjectX = [tempDict objectForKey:(NSString*)kSecMatchLimitOne];
-    tempObjectX = kSecMatchLimit;
+
+    [tempDict setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnData];
+    [tempDict setObject:(id)kSecMatchLimitOne forKey:(id)kSecMatchLimit];
     
-    id object;
     
-    if (tempObject, object) {
+    id object = NULL;
+    
+    if (tempDict, object) {
         token = [NSKeyedUnarchiver unarchiveObjectWithData:object];
         return token;
     }
@@ -153,6 +156,16 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
     
 }
 
+
+-(NSString*)getAccessToken{
+    
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults]objectForKey:kAccessToken];
+    
+    if (!accessToken) {
+        accessToken = [self getAccessToken];
+    }
+    return accessToken;
+}
 
 -(void)saveStringToUserDefaults:(NSString*)value forKey:(NSString*)key{
     
