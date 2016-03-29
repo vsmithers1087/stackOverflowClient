@@ -26,6 +26,7 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
 @implementation OAuthViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     [self setUpWebView];
@@ -57,7 +58,9 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
 
 }
 
--(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
+-(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
+
+decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     
     NSURLRequest *request = navigationAction.request;
     NSURL *requestURL = request.URL;
@@ -151,7 +154,6 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
     [returnValue setObject:(id)kSecAttrAccessibleAfterFirstUnlock forKey:(NSString*) kSecAttrAccessible];
     
     return returnValue;
-    
 }
 
 

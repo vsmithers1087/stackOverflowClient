@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "OAuthViewController.h"
 #import "KeyChainWrapper.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface AppDelegate ()
 
