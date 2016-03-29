@@ -51,9 +51,6 @@
          [weakOAuth removeFromParentViewController];
     };
     
-    
-    
-    
     [rootViewController addChildViewController:oAuthViewcontroller];
     [rootViewController.view addSubview:oAuthViewcontroller.view];
     

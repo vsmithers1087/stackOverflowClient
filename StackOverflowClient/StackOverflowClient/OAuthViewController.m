@@ -7,8 +7,11 @@
 //
 
 #import "OAuthViewController.h"
+#import "KeyChainWrapper.h"
+
 @import WebKit;
 
+NSString const *kAccessToken = @"kAccessToken";
 NSString const *kClientID = @"6798";
 NSString const *kBaseURL = @"https://stackexchange.com/oauth/dialog?";
 NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
@@ -26,8 +29,6 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
     [super viewDidLoad];
     
     [self setUpWebView];
-    // Do any additional setup after loading the view.
-    //vsmithers1087
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -86,15 +87,15 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
         
         if (componentArray.count >= 2) {
             
-            
-            
             NSString *key = componentArray[0];
             NSString *value = componentArray[1];
             
             if (key && value) {
                 NSLog(@"KEY: %@, VALUE: %@", key, value);
                 
-                [self saveStringToUserDefaults:value forKey:key];
+//                [self saveStringToUserDefaults:value forKey:key];
+                
+                [self saveTokenToKeyChain:value];
                 
                 if (self.completion) {
                     [self completion];
@@ -104,6 +105,55 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
     }
 }
 
+-(BOOL)saveTokenToKeyChain:(NSString*)token{
+    
+    KeyChainWrapper *wrapper = [[KeyChainWrapper alloc]init];
+    
+    wrapper.keyChainStore = [self getKeyChainQuery:(NSString*)kAccessToken];
+    
+    [wrapper.keyChainStore setObject:[NSKeyedArchiver archivedDataWithRootObject:token] forKey:(NSString*)kSecValueData];
+    
+    CFDictionaryRef newDict = (__bridge CFDictionaryRef)(wrapper.keyChainStore);
+    
+    SecItemDelete(newDict);
+    SecItemAdd(newDict, nil);
+    
+    return YES;
+}
+
+-(NSString*)accessTokenFromKeyChain{
+    NSMutableDictionary *tempDict = [self getKeyChainQuery:kAccessToken];
+    
+    NSString *token;
+    
+    id tempObject = [tempDict objectForKey:(NSString*)kSecReturnData];
+    tempObject = kCFBooleanTrue;
+    id tempObjectX = [tempDict objectForKey:(NSString*)kSecMatchLimitOne];
+    tempObjectX = kSecMatchLimit;
+    
+    id object;
+    
+    if (tempObject, object) {
+        token = [NSKeyedUnarchiver unarchiveObjectWithData:object];
+        return token;
+    }
+    
+    return token;
+    
+}
+
+-(NSMutableDictionary*)getKeyChainQuery:(NSString*)query{
+    
+    NSMutableDictionary *returnValue = [[NSMutableDictionary alloc]init];
+
+    [returnValue setObject:(id)kSecClassGenericPassword forKey:(NSString*)kSecClass];
+    [returnValue setObject:query forKey:(NSString*)kSecAttrService];
+    [returnValue setObject:query forKey:(NSString*)kSecAttrAccount];
+    [returnValue setObject:(id)kSecAttrAccessibleAfterFirstUnlock forKey:(NSString*) kSecAttrAccessible];
+    
+    return returnValue;
+    
+}
 
 
 -(void)saveStringToUserDefaults:(NSString*)value forKey:(NSString*)key{
@@ -114,6 +164,7 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
     
     
 }
+
 
 
 @end

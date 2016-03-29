@@ -18,6 +18,7 @@
 		0BF1BCB21CA9A1DF00EEEEF7 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1BCB11CA9A1DF00EEEEF7 /* MenuTableViewController.m */; };
 		0BF1BCB51CA9A26600EEEEF7 /* BurgerContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1BCB41CA9A26600EEEEF7 /* BurgerContainerViewController.m */; };
 		0BF1BCB71CA9C04F00EEEEF7 /* burger.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1BCB61CA9C04F00EEEEF7 /* burger.png */; };
+		0BF1BCBA1CA9D9AC00EEEEF7 /* KeyChainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1BCB91CA9D9AC00EEEEF7 /* KeyChainWrapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		0BF1BCB31CA9A26600EEEEF7 /* BurgerContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurgerContainerViewController.h; sourceTree = "<group>"; };
 		0BF1BCB41CA9A26600EEEEF7 /* BurgerContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BurgerContainerViewController.m; sourceTree = "<group>"; };
 		0BF1BCB61CA9C04F00EEEEF7 /* burger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burger.png; sourceTree = SOURCE_ROOT; };
+		0BF1BCB81CA9D9AC00EEEEF7 /* KeyChainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainWrapper.h; sourceTree = "<group>"; };
+		0BF1BCB91CA9D9AC00EEEEF7 /* KeyChainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 				0BF1BC901CA97FF200EEEEF7 /* AppDelegate.h */,
 				0BF1BC911CA97FF200EEEEF7 /* AppDelegate.m */,
 				0BF1BC9E1CA97FF200EEEEF7 /* Info.plist */,
+				0BF1BCB81CA9D9AC00EEEEF7 /* KeyChainWrapper.h */,
+				0BF1BCB91CA9D9AC00EEEEF7 /* KeyChainWrapper.m */,
 			);
 			name = AppGlobal;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BF1BCAF1CA9A0E700EEEEF7 /* UserSearchViewController.m in Sources */,
+				0BF1BCBA1CA9D9AC00EEEEF7 /* KeyChainWrapper.m in Sources */,
 				0BF1BCA91CA9882F00EEEEF7 /* OAuthViewController.m in Sources */,
 				0BF1BC921CA97FF200EEEEF7 /* AppDelegate.m in Sources */,
 				0BF1BCB51CA9A26600EEEEF7 /* BurgerContainerViewController.m in Sources */,
