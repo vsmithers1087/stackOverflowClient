@@ -13,5 +13,7 @@
 
 @property(strong, nonatomic)NSMutableDictionary *keyChainStore;
 
++(instancetype)shared;
+
 
 @end

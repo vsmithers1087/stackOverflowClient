@@ -14,4 +14,6 @@ typedef void(^OAuthWebViewControllerCompletion)();
 
 @property(strong, nonatomic)OAuthWebViewControllerCompletion completion;
 
+-(id)accessTokenFromKeyChain;
+
 @end
