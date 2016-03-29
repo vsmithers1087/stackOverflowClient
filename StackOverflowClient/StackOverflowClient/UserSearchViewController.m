@@ -9,7 +9,7 @@
 #import "UserSearchViewController.h"
 
 @interface UserSearchViewController ()
-
+//name instead of title. user instead search
 @end
 
 @implementation UserSearchViewController

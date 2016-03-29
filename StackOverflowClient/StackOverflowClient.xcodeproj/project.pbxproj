@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B98A74F1CAAF07A0057D3BE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B98A74E1CAAF07A0057D3BE /* User.m */; };
+		0B98A7521CAAF1E50057D3BE /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B98A7511CAAF1E50057D3BE /* Question.m */; };
+		0B98A7551CAAF3550057D3BE /* APIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B98A7541CAAF3550057D3BE /* APIService.m */; };
+		0B98A7581CAAF55D0057D3BE /* StackOverflowService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B98A7571CAAF55D0057D3BE /* StackOverflowService.m */; };
+		0B98A75B1CAB0A5D0057D3BE /* JSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B98A75A1CAB0A5D0057D3BE /* JSONParser.m */; };
 		0BF1BC8F1CA97FF200EEEEF7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1BC8E1CA97FF200EEEEF7 /* main.m */; };
 		0BF1BC921CA97FF200EEEEF7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1BC911CA97FF200EEEEF7 /* AppDelegate.m */; };
 		0BF1BC981CA97FF200EEEEF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1BC961CA97FF200EEEEF7 /* Main.storyboard */; };
@@ -23,6 +28,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B98A74D1CAAF07A0057D3BE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		0B98A74E1CAAF07A0057D3BE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		0B98A7501CAAF1E50057D3BE /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		0B98A7511CAAF1E50057D3BE /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		0B98A7531CAAF3550057D3BE /* APIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIService.h; sourceTree = "<group>"; };
+		0B98A7541CAAF3550057D3BE /* APIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIService.m; sourceTree = "<group>"; };
+		0B98A7561CAAF55D0057D3BE /* StackOverflowService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackOverflowService.h; sourceTree = "<group>"; };
+		0B98A7571CAAF55D0057D3BE /* StackOverflowService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackOverflowService.m; sourceTree = "<group>"; };
+		0B98A7591CAB0A5D0057D3BE /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
+		0B98A75A1CAB0A5D0057D3BE /* JSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONParser.m; sourceTree = "<group>"; };
 		0BF1BC8A1CA97FF200EEEEF7 /* StackOverflowClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StackOverflowClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF1BC8E1CA97FF200EEEEF7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0BF1BC901CA97FF200EEEEF7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -61,6 +76,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B98A74C1CAAF0640057D3BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0B98A74D1CAAF07A0057D3BE /* User.h */,
+				0B98A74E1CAAF07A0057D3BE /* User.m */,
+				0B98A7501CAAF1E50057D3BE /* Question.h */,
+				0B98A7511CAAF1E50057D3BE /* Question.m */,
+				0B98A7531CAAF3550057D3BE /* APIService.h */,
+				0B98A7541CAAF3550057D3BE /* APIService.m */,
+				0B98A7561CAAF55D0057D3BE /* StackOverflowService.h */,
+				0B98A7571CAAF55D0057D3BE /* StackOverflowService.m */,
+				0B98A7591CAB0A5D0057D3BE /* JSONParser.h */,
+				0B98A75A1CAB0A5D0057D3BE /* JSONParser.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		0BF1BC811CA97FF200EEEEF7 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +114,7 @@
 		0BF1BC8C1CA97FF200EEEEF7 /* StackOverflowClient */ = {
 			isa = PBXGroup;
 			children = (
+				0B98A74C1CAAF0640057D3BE /* Model */,
 				0BF1BCA41CA9800500EEEEF7 /* AppGlobal */,
 				0BF1BCA51CA9800E00EEEEF7 /* Controller */,
 				0BF1BCA61CA9801B00EEEEF7 /* View */,
@@ -279,12 +312,17 @@
 			files = (
 				0BF1BCAF1CA9A0E700EEEEF7 /* UserSearchViewController.m in Sources */,
 				0BF1BCBA1CA9D9AC00EEEEF7 /* KeyChainWrapper.m in Sources */,
+				0B98A7551CAAF3550057D3BE /* APIService.m in Sources */,
+				0B98A74F1CAAF07A0057D3BE /* User.m in Sources */,
 				0BF1BCA91CA9882F00EEEEF7 /* OAuthViewController.m in Sources */,
 				0BF1BC921CA97FF200EEEEF7 /* AppDelegate.m in Sources */,
 				0BF1BCB51CA9A26600EEEEF7 /* BurgerContainerViewController.m in Sources */,
 				0BF1BCAC1CA9A0DC00EEEEF7 /* QuestionSearchViewController.m in Sources */,
+				0B98A7581CAAF55D0057D3BE /* StackOverflowService.m in Sources */,
+				0B98A7521CAAF1E50057D3BE /* Question.m in Sources */,
 				0BF1BCB21CA9A1DF00EEEEF7 /* MenuTableViewController.m in Sources */,
 				0BF1BC8F1CA97FF200EEEEF7 /* main.m in Sources */,
+				0B98A75B1CAB0A5D0057D3BE /* JSONParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

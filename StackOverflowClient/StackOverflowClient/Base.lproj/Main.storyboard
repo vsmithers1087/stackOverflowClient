@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Burger Container View Controller-->
@@ -110,8 +111,45 @@
                     <view key="view" contentMode="scaleToFill" id="CxN-VH-TCE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XbH-2f-uOy">
+                                <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="xmo-fP-ljI">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="XXU-8e-AEo" id="mTb-Js-ipr"/>
+                                    </connections>
+                                </searchBar>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="questionCell" id="XAJ-vg-s49">
+                                        <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XAJ-vg-s49" id="2Uf-hZ-7Cf">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="XXU-8e-AEo" id="eAi-5p-jkF"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XbH-2f-uOy" firstAttribute="leading" secondItem="CxN-VH-TCE" secondAttribute="leadingMargin" constant="-20" id="Kiw-xW-4J3"/>
+                            <constraint firstItem="5Y2-f8-Q4L" firstAttribute="top" secondItem="XbH-2f-uOy" secondAttribute="bottom" id="b45-Yn-oUq"/>
+                            <constraint firstItem="XbH-2f-uOy" firstAttribute="top" secondItem="Szz-Vj-C9j" secondAttribute="bottom" constant="50" id="syp-IW-5iE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XbH-2f-uOy" secondAttribute="trailing" constant="-20" id="wpg-f3-mPI"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchBAr" destination="xmo-fP-ljI" id="ZsM-uh-DE5"/>
+                        <outlet property="tableView" destination="XbH-2f-uOy" id="2lF-2J-Jqm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nlm-Ak-sEX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

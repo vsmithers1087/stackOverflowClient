@@ -17,3 +17,18 @@ int main(int argc, char * argv[]) {
     }
 }
 
+//nano podfile
+
+//add files//
+
+//enter
+
+
+/*
+ 
+ To uninstall:
+ 
+ 
+ 
+ */
+

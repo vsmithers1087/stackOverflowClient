@@ -19,8 +19,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     [self fetchAccessToken];
+    
+//    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//        sleep(4);
+//        NSLog(@"now block");
+//    });
+//    
+//    
+//    NSLog(@"now outside");
+    
     
     return YES;
 }
