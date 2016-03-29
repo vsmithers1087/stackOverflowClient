@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "OAuthViewController.h"
+#import "KeyChainWrapper.h"
 
 @interface AppDelegate ()
 
@@ -18,23 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [self checkForAccessToken];
+    [self fetchAccessToken];
     
     return YES;
-}
-
-
--(void)checkForAccessToken {
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    NSString *accessToken = [userDefaults stringForKey:@"access_token"];
-    
-    if (!accessToken) {
-        
-        //Get access token
-        [self fetchAccessToken];
-    }
 }
 
 -(void)fetchAccessToken {
@@ -43,18 +30,20 @@
     
     OAuthViewController *oAuthViewcontroller = [[OAuthViewController alloc]init];
     
-    __weak typeof (oAuthViewcontroller) weakOAuth = oAuthViewcontroller;
-    
-    oAuthViewcontroller.completion = ^() {
+    if (![oAuthViewcontroller accessTokenFromKeyChain]) {
+        __weak typeof (oAuthViewcontroller) weakOAuth = oAuthViewcontroller;
         
-        [weakOAuth.view removeFromSuperview];
-         [weakOAuth removeFromParentViewController];
-    };
-    
-    [rootViewController addChildViewController:oAuthViewcontroller];
-    [rootViewController.view addSubview:oAuthViewcontroller.view];
-    
-    [oAuthViewcontroller didMoveToParentViewController:rootViewController];
+        oAuthViewcontroller.completion = ^() {
+            
+            [weakOAuth.view removeFromSuperview];
+            [weakOAuth removeFromParentViewController];
+        };
+        
+        [rootViewController addChildViewController:oAuthViewcontroller];
+        [rootViewController.view addSubview:oAuthViewcontroller.view];
+        
+        [oAuthViewcontroller didMoveToParentViewController:rootViewController];
+    }
     
 }
 

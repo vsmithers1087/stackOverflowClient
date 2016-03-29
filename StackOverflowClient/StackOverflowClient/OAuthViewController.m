@@ -98,7 +98,7 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
                 [self saveTokenToKeyChain:value];
                 
                 if (self.completion) {
-                    [self completion];
+                    self.completion();
                 }
             }
         }
@@ -107,13 +107,11 @@ NSString const *kRedirectURI = @"https://stackexchange.com/oauth/login_success";
 
 -(BOOL)saveTokenToKeyChain:(NSString*)token{
     
-    KeyChainWrapper *wrapper = [[KeyChainWrapper alloc]init];
+  NSMutableDictionary *keyChainStore = [self getKeyChainQuery: (NSString*)kAccessToken];
     
-    wrapper.keyChainStore = [self getKeyChainQuery:(NSString*)kAccessToken];
+    [keyChainStore setObject:[NSKeyedArchiver archivedDataWithRootObject:token] forKey:(NSString*)kSecValueData];
     
-    [wrapper.keyChainStore setObject:[NSKeyedArchiver archivedDataWithRootObject:token] forKey:(NSString*)kSecValueData];
-    
-    CFDictionaryRef newDict = (__bridge CFDictionaryRef)(wrapper.keyChainStore);
+    CFDictionaryRef newDict = (__bridge CFDictionaryRef)(keyChainStore);
     
     SecItemDelete(newDict);
     SecItemAdd(newDict, nil);
