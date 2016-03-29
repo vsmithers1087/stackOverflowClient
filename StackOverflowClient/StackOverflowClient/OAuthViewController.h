@@ -14,6 +14,4 @@ typedef void(^OAuthWebViewControllerCompletion)();
 
 @property(strong, nonatomic)OAuthWebViewControllerCompletion completion;
 
-+(NSString *)identifier;
-
 @end

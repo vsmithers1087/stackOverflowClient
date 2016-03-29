@@ -63,6 +63,7 @@ NSTimeInterval const kTimeToSlideClosed = 0.15;
 }
 
 -(void)setUPChildViewController:(UIViewController*)viewController onScreen:(BOOL)onScreen{
+    
     if (onScreen) {
         viewController.view.frame = self.view.frame;
         
@@ -70,12 +71,14 @@ NSTimeInterval const kTimeToSlideClosed = 0.15;
         [self.view addSubview:viewController.view];
         
         [viewController didMoveToParentViewController:self];
+        
     }else{
         viewController.view.frame = [self offScreenLocation];
     }
 }
 
 -(void)setupMenuViewController{
+    
     MenuTableViewController *menuVC = [self.storyboard instantiateViewControllerWithIdentifier:[MenuTableViewController identifier]];
     
     
@@ -87,6 +90,7 @@ NSTimeInterval const kTimeToSlideClosed = 0.15;
 }
 
 -(void)setUpInitialContentViewController{
+    
     QuestionSearchViewController *questionSearchVC = [self.storyboard instantiateViewControllerWithIdentifier:[QuestionSearchViewController identifier]];
     
     [self setUPChildViewController:questionSearchVC onScreen:YES];
@@ -103,13 +107,15 @@ NSTimeInterval const kTimeToSlideClosed = 0.15;
     self.userController = userSearchVC;
 }
 
--(void)removeChildViewController:(UIViewController*)viewController{
+-(void)removeChildVC:(UIViewController*)viewController{
+    
     [viewController willMoveToParentViewController:nil];
     [viewController.view removeFromSuperview];
     [viewController removeFromParentViewController];
 }
 
 -(CGRect)offScreenLocation{
+    
     CGFloat offScreenLocationX = self.view.frame.size.width;
     CGFloat offScreenLocationY = self.view.frame.origin.y;
     CGFloat offScreenLocationWidth = self.view.frame.size.width;
@@ -137,7 +143,7 @@ NSTimeInterval const kTimeToSlideClosed = 0.15;
         [self panGestureStateChangedWithSender: sender];
     
     }else{
-        //[self panGestureStateEnded];
+        [self panGestureStateEnded];
     }
 }
 
@@ -187,6 +193,7 @@ NSTimeInterval const kTimeToSlideClosed = 0.15;
 }
 
 -(void)setUpTapGesture{
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapToCloseMenu:)];
     
     [self.topViewController.view addGestureRecognizer:tap];
@@ -204,12 +211,12 @@ NSTimeInterval const kTimeToSlideClosed = 0.15;
 }
 
 -(void)burgerButtonWithImageName:(NSString*)imageNamed {
+    
     CGRect burgerSize = CGRectMake(0, 0, kBurgerButtonWidth, kBurgerButtonWidth);
     
     UIButton *burgerButton = [[UIButton alloc]initWithFrame:burgerSize];
     
     UIImage *buttonImage = [UIImage imageNamed:@"burger.png"];
-    //get image for burger bun
     
     [burgerButton setImage:buttonImage forState:UIControlStateNormal];
     
@@ -231,5 +238,59 @@ NSTimeInterval const kTimeToSlideClosed = 0.15;
     }];
     
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UIViewController *viewController = self.viewControllers[indexPath.row];
+    
+    if (![viewController isEqual:self.topViewController]) {
+        [self switchToViewController:viewController];
+        
+    }
+    
+}
+
+-(void)replaceTopViewControllerWith:(UIViewController*)viewController {
+    
+    [self setUPChildViewController:viewController onScreen:NO];
+    [self addChildViewController:viewController];
+    [self.view addSubview:viewController.view];
+    
+    [viewController didMoveToParentViewController:self];
+    [self removeChildVC:self.topViewController];
+    self.topViewController = viewController;
+    [self.burgerButton removeFromSuperview];
+    [self.topViewController.view addSubview:self.burgerButton];
+    
+}
+-(void)switchToViewController:(UIViewController*)viewController{
+    
+    [UIView animateWithDuration:kTimeToSlideClosed animations:^{
+        
+        self.topViewController.view.frame = [self offScreenLocation];
+        
+    } completion:^(BOOL finished) {
+        
+        [self replaceTopViewControllerWith:viewController];
+        
+        [UIView animateWithDuration:kTimeToSlideClosed animations:^{
+            
+            self.topViewController.view.center = self.view.center;
+            
+        } completion:^(BOOL finished) {
+            
+            [self.topViewController.view addGestureRecognizer:self.panGesture];
+            
+            self.burgerButton.userInteractionEnabled = YES;
+        }];
+        
+    }];
+}
+
+
+
+
+
+
 
 @end
